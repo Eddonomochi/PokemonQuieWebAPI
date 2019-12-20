@@ -11,7 +11,10 @@
     <h1 id="text">You answered @Model.QuestionsCorrect Pokemon Correctly</h1>
 
     <img id="pokeID" src="@Model.CorrectPokemon.PokemonImageUrl"
-         width="50%" height="50%" />
+         width="50%" height="50%" /> 
+        @*@Model.CorrectPokemon.PokemonName*@
+    <img/>
+
 
     <form asp-controller="Quiz" asp-action="QuizView" id="pokemon-form">
         @foreach (var pokeName in Model.QuizAnswers)
@@ -42,7 +45,7 @@
 
 <script>
 
-    var delayInMilliseconds = 1000; //1 second
+    var delayInMilliseconds = 4000; //4 second
 
     function userAnswer() {
 

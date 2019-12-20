@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace PokeQuizWebAPI.Controllers
 {
-    
+
+    [Authorize]
     public class QuizController : Controller
     {
         private readonly IPokemonService _pokemonService;
@@ -18,6 +19,7 @@ namespace PokeQuizWebAPI.Controllers
         private readonly IQuizFlow _quizFlow;
         private readonly IPokemonUserSQLService _pokemonUserSQLService;
 
+        
         public QuizController
         (IPokemonService pokemonService,
          IRandomizer randomizer,
