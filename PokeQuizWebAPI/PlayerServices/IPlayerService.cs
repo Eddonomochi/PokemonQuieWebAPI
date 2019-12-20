@@ -6,7 +6,7 @@ namespace PokeQuizWebAPI.PlayerServices
 {
     public interface IPlayerService
     {
-        IEnumerable<string> SelectTopTenPlayers();
+        Task<IEnumerable<string>> SelectTopTenPlayers();
         Task<PlayerRankModel> AssemblePlayerRank();
     }
 }
