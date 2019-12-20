@@ -6,7 +6,7 @@
 
 <h1>Pokedex details on @Model.PokemonName</h1>
 
-<div >
+<div>
     <label>Pokemon Name: @Model.PokemonName </label><br />
     <label>Pokemon ID Number: @Model.PokemonId</label><br />
     <label>Pokemon Weight: @Model.PokemonWeight</label><br />
@@ -17,12 +17,13 @@
     <h3>Pokemon Type:</h3>
     <label>Some pokemon are just one type other pokemon contain multiple types</label><br />
     <label>To learn more about the listed pokemon type click on the type name</label><br />
-    <label>@Model.PokemonName constains the following types: 
+    <label>
+        @Model.PokemonName constains the following types:
     @foreach (var type in Model.PokemonTypes)
     {
         <a asp-controller="Pokedex" asp-action="GetPokemonTypeInfo" asp-route-name="@type">@type</a>
-    } 
-    </label>
+    }
+</label>
 </div>
 
 <div>
@@ -42,45 +43,46 @@
 
             @foreach (var statNumber in Model.PokemonStats)
             {
-                <td >@statNumber.PointsInStat </td>
-                
+                <th>@statNumber.PointsInStat 
+                </th>
+
             }
         </tbody>
     </table>
 </div>
 
-<img src="@Model.PokemonImageUrl"
-     width="50%" height="50%" alt="filter applied"  />
+    <img src="@Model.PokemonImageUrl"
+         width="50%" height="50%" alt="filter applied" />
 
 
-@*<div>
-    <h3>Evolution Chart</h3>
-   
-    <table class="table">
-        <thead>
-            <tr>
+    @*<div>
+            <h3>Evolution Chart</h3>
 
-                @foreach (var pokemon in Model.EvolutionChain)
-                {
-                <th><a asp-controller="Pokedex" asp-action="GetPokemonDetails" asp-route-name="@pokemon.PokemonName">@pokemon.PokemonName</a></th>
-                }
+            <table class="table">
+                <thead>
+                    <tr>
 
-            </tr>
-        </thead>
-        <tbody>
+                        @foreach (var pokemon in Model.EvolutionChain)
+                        {
+                        <th><a asp-controller="Pokedex" asp-action="GetPokemonDetails" asp-route-name="@pokemon.PokemonName">@pokemon.PokemonName</a></th>
+                        }
 
-            @foreach (var image in Model.EvolutionChain)
-            {
+                    </tr>
+                </thead>
+                <tbody>
 
-            <td><img src="@image.PokemonImageUrl"
-              /> 
-            </td>
+                    @foreach (var image in Model.EvolutionChain)
+                    {
 
-              }
-            </tbody>
-        </table>
-    </div>
-</div>*@
+                    <td><img src="@image.PokemonImageUrl"
+                      />
+                    </td>
+
+                      }
+                    </tbody>
+                </table>
+            </div>
+        </div>*@
 
 
 

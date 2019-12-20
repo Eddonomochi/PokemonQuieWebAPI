@@ -5,15 +5,16 @@
 }
 <h1>@Model.Username</h1>
 <h3>Rank: @Model.PlayerRank</h3>
-<h3>Percentile: Upper @Model.PlayerPerrcentile% Percentile </h3>
+<h3>Upper Percentile: @Model.PlayerPerrcentile.ToString()% </h3>
 <h3>Overall Score: @Model.AverageScore%</h3>
 
-<table class="table" style="width: 50%">
-    <thead>
-        <td align ="center">
-
+<br />
+<br />
+<table class="table" style="width: 40%">
+    <thead >
+        <th colspan="2" align="center" >
                 Top Ten Players
-        </td>
+        </th>
     </thead>
     <tbody>
         @for (int i = 1; i < Model.TopTenPlayers.Count()+1; i++)
