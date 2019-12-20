@@ -2,6 +2,7 @@
 using Identity.Dapper.Entities;
 using PokeQuizWebAPI.PokemonDAL;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,23 +27,29 @@ namespace PokeQuizWebAPI.CalculationsService
             return percentScoreThisAttempt;
         }
 
-        public double PrecentileFinder(int userID)
+        public async Task<double> PrecentileFinder(int userID)
         {
-            var currentUserScore = _pokemonUserSQLStore.SelectPlayerAverageScore(userID);
-            var listOfUsers = _pokemonUserSQLStore.SelectAllScores();
+            var currentUserScore = await _pokemonUserSQLStore.SelectPlayerAverageScore(userID);
+            var listOfUsers = await _pokemonUserSQLStore.SelectAllScores();
             var numOfBottomPrecentile = 0;
-            var userCount = listOfUsers.Count();
+            //var userCount = listOfUsers.Count();
+            var listOfUsersInList = new List<double>();
+            var userCount = listOfUsersInList.Count();
 
-
-            foreach (var allPlayersScores in listOfUsers)
+            foreach (var allPlayerScores in listOfUsers)
             {
-                
-                    if (allPlayersScores < currentUserScore)
+                listOfUsersInList.Add(allPlayerScores);
+            }
 
-                    {
-                        numOfBottomPrecentile += 1;
-                    }
-                
+            foreach (var allPlayersScoress in listOfUsersInList)
+            {
+
+                if (allPlayersScoress < currentUserScore)
+
+                {
+                    numOfBottomPrecentile += 1;
+                }
+
             }
 
             var userPrecentile = (1d - (Convert.ToDouble(numOfBottomPrecentile) / Convert.ToDouble(userCount)));
@@ -50,10 +57,10 @@ namespace PokeQuizWebAPI.CalculationsService
             return userPrecentile;
         }
 
-        public int RankFinder(int userID)
+        public async Task<int> RankFinder(int userID)
         {
-            var currentUserScore = _pokemonUserSQLStore.SelectPlayerAverageScore(userID);
-            var listOfUsers = _pokemonUserSQLStore.SelectAllScores();
+            var currentUserScore = await _pokemonUserSQLStore.SelectPlayerAverageScore(userID);
+            var listOfUsers = await _pokemonUserSQLStore.SelectAllScores();
             var numOfBottomPrecentile = 0;
             var userCount = listOfUsers.Count();
 
