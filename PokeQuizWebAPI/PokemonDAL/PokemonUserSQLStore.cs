@@ -94,7 +94,7 @@ namespace PokeQuizWebAPI.PokemonDAL
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
-                var result = connection.QueryFirstOrDefault<float>(sql, new { UserID = id });
+                var result = connection.QueryFirstOrDefault<double>(sql, new { UserID = id });
                 return result;
             }
         }
