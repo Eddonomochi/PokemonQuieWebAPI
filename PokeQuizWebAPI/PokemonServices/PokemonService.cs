@@ -19,12 +19,14 @@ namespace PokeQuizWebAPI.PokemonServices
         public async Task<PokedexViewModel> GetAdditionalPokemonInfo(int id)
         {
             var apiPokemonInfo = await _pokemonApi.GetMorePokemonInfo(id);
-            var pokemon = new PokedexViewModel();
-            pokemon.PokemonWeight = apiPokemonInfo.weight;
-            pokemon.PokemonName = apiPokemonInfo.name;
-            pokemon.PokemonId = apiPokemonInfo.id;
-            pokemon.PokemonImageUrl = apiPokemonInfo.sprites.front_default;
-            pokemon.PokemonHeight = apiPokemonInfo.height;
+            var pokemon = new PokedexViewModel
+            {
+                PokemonWeight = apiPokemonInfo.weight,
+                PokemonName = apiPokemonInfo.name,
+                PokemonId = apiPokemonInfo.id,
+                PokemonImageUrl = apiPokemonInfo.sprites.front_default,
+                PokemonHeight = apiPokemonInfo.height
+            };
 
             //var apiModel =  await _pokemonApi.DetermineIfPokemonHasEvolutionChain(id);
             //pokemon.HaveEvolutionChain = apiModel.evolution_chain.url;
@@ -37,7 +39,7 @@ namespace PokeQuizWebAPI.PokemonServices
             //    var apiImageUrlCall = await _pokemonApi.GetMorePokemonInfo(pokemonEvolutionBaby.PokemonName);
             //    pokemonEvolutionBaby.PokemonImageUrl = apiImageUrlCall.sprites.front_default;
 
-                
+
             //    var pokemonEvolution2 = new PokemonResponse();
             //    pokemonEvolution2.PokemonName = apiChain.chain.evolves_to[0].species.name;
             //    var apiImageUrlCall2 = await _pokemonApi.GetMorePokemonInfo(pokemonEvolution2.PokemonName);
@@ -53,14 +55,16 @@ namespace PokeQuizWebAPI.PokemonServices
             //        pokemonEvolution3.PokemonImageUrl = apiImageUrlCall3.sprites.front_default;
             //        pokemon.EvolutionChain.Add(pokemonEvolution3);
             //    }
-               
+
             //}
 
             foreach (var stat in apiPokemonInfo.stats)
             {
-                var pokemonStat = new PokemonStat();
-                pokemonStat.StatName = stat.stat.name;
-                pokemonStat.PointsInStat = stat.base_stat;
+                var pokemonStat = new PokemonStat
+                {
+                    StatName = stat.stat.name,
+                    PointsInStat = stat.base_stat
+                };
                 pokemon.PokemonStats.Add(pokemonStat);
             }
 
@@ -74,12 +78,14 @@ namespace PokeQuizWebAPI.PokemonServices
         public async Task<PokedexViewModel> GetAdditionalPokemonInfo(string name)
         {
             var apiPokemonInfo = await _pokemonApi.GetMorePokemonInfo(name);
-            var pokemon = new PokedexViewModel();
-            pokemon.PokemonWeight = apiPokemonInfo.weight;
-            pokemon.PokemonName = apiPokemonInfo.name;
-            pokemon.PokemonId = apiPokemonInfo.id;
-            pokemon.PokemonImageUrl = apiPokemonInfo.sprites.front_default;
-            pokemon.PokemonHeight = apiPokemonInfo.height;
+            var pokemon = new PokedexViewModel
+            {
+                PokemonWeight = apiPokemonInfo.weight,
+                PokemonName = apiPokemonInfo.name,
+                PokemonId = apiPokemonInfo.id,
+                PokemonImageUrl = apiPokemonInfo.sprites.front_default,
+                PokemonHeight = apiPokemonInfo.height
+            };
 
             //var apiModel = await _pokemonApi.DetermineIfPokemonHasEvolutionChain(apiPokemonInfo.id);
             //pokemon.HaveEvolutionChain = apiModel.evolution_chain.url;
@@ -118,9 +124,11 @@ namespace PokeQuizWebAPI.PokemonServices
 
             foreach (var stat in apiPokemonInfo.stats)
             {
-                var pokemonStat = new PokemonStat();
-                pokemonStat.StatName = stat.stat.name;
-                pokemonStat.PointsInStat = stat.base_stat;
+                var pokemonStat = new PokemonStat
+                {
+                    StatName = stat.stat.name,
+                    PointsInStat = stat.base_stat
+                };
                 pokemon.PokemonStats.Add(pokemonStat);
             }
 
@@ -133,7 +141,7 @@ namespace PokeQuizWebAPI.PokemonServices
 
         public async Task<SelectPokemonViewModel> GetPokemonByGeneration()
         {
-            int generationTracker = 1;
+            var generationTracker = 1;
             var pokemonList = new SelectPokemonViewModel();
             while (generationTracker < 8)
             {
@@ -143,63 +151,84 @@ namespace PokeQuizWebAPI.PokemonServices
                 {
                     foreach (var pokemon in api.pokemon_species)
                     {
-                        var pokemonToList = new PokemonResponse();
-                        pokemonToList.PokemonName = pokemon.name;
+                        var pokemonToList = new PokemonResponse
+                        {
+                            PokemonName = pokemon.name
+                        };
                         pokemonList.Gen1.Add(pokemonToList);
+                        pokemonList.Gen1.Sort((x, y) => string.Compare(x.PokemonName, y.PokemonName));
                     }
                 }
                 else if (generationTracker == 2)
                 {
                     foreach (var pokemon in api.pokemon_species)
                     {
-                        var pokemonToList = new PokemonResponse();
-                        pokemonToList.PokemonName = pokemon.name;
+                        var pokemonToList = new PokemonResponse
+                        {
+                            PokemonName = pokemon.name
+                        };
                         pokemonList.Gen2.Add(pokemonToList);
+                        pokemonList.Gen2.Sort((x, y) => string.Compare(x.PokemonName, y.PokemonName));
                     }
                 }
                 else if (generationTracker == 3)
                 {
                     foreach (var pokemon in api.pokemon_species)
                     {
-                        var pokemonToList = new PokemonResponse();
-                        pokemonToList.PokemonName = pokemon.name;
+                        var pokemonToList = new PokemonResponse
+                        {
+                            PokemonName = pokemon.name
+                        };
                         pokemonList.Gen3.Add(pokemonToList);
+                        pokemonList.Gen3.Sort((x, y) => string.Compare(x.PokemonName, y.PokemonName));
                     }
                 }
                 else if (generationTracker == 4)
                 {
                     foreach (var pokemon in api.pokemon_species)
                     {
-                        var pokemonToList = new PokemonResponse();
-                        pokemonToList.PokemonName = pokemon.name;
+                        var pokemonToList = new PokemonResponse
+                        {
+                            PokemonName = pokemon.name
+                        };
                         pokemonList.Gen4.Add(pokemonToList);
+                        pokemonList.Gen4.Sort((x, y) => string.Compare(x.PokemonName, y.PokemonName));
                     }
                 }
                 else if (generationTracker == 5)
                 {
                     foreach (var pokemon in api.pokemon_species)
                     {
-                        var pokemonToList = new PokemonResponse();
-                        pokemonToList.PokemonName = pokemon.name;
+                        var pokemonToList = new PokemonResponse
+                        {
+                            PokemonName = pokemon.name
+                        };
                         pokemonList.Gen5.Add(pokemonToList);
+                        pokemonList.Gen5.Sort((x, y) => string.Compare(x.PokemonName, y.PokemonName));
                     }
                 }
                 else if (generationTracker == 6)
                 {
                     foreach (var pokemon in api.pokemon_species)
                     {
-                        var pokemonToList = new PokemonResponse();
-                        pokemonToList.PokemonName = pokemon.name;
+                        var pokemonToList = new PokemonResponse
+                        {
+                            PokemonName = pokemon.name
+                        };
                         pokemonList.Gen6.Add(pokemonToList);
+                        pokemonList.Gen6.Sort((x, y) => string.Compare(x.PokemonName, y.PokemonName));
                     }
                 }
                 else if (generationTracker == 7)
                 {
                     foreach (var pokemon in api.pokemon_species)
                     {
-                        var pokemonToList = new PokemonResponse();
-                        pokemonToList.PokemonName = pokemon.name;
+                        var pokemonToList = new PokemonResponse
+                        {
+                            PokemonName = pokemon.name
+                        };
                         pokemonList.Gen7.Add(pokemonToList);
+                        pokemonList.Gen7.Sort((x, y) => string.Compare(x.PokemonName, y.PokemonName));
                     }
                 }
                 generationTracker++;
@@ -262,7 +291,7 @@ namespace PokeQuizWebAPI.PokemonServices
 
         public async Task<PokemonResponse> MapPokemonInfo(int id)
         {
-            var apiPokemon =  await _pokemonApi.GetPokemon(id);
+            var apiPokemon = await _pokemonApi.GetPokemon(id);
             var pokemon = new PokemonResponse();
 
             pokemon.PokemonName = apiPokemon.name;

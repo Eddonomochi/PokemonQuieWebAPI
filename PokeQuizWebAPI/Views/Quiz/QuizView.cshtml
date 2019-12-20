@@ -6,38 +6,36 @@
 
 @*Backgroud Color F81B15*@
 
-<h1>Who's That Pokemon</h1>
+<h1>Who's That Pokemon?</h1>
 <div>
-    <h1 id="text">You answered @Model.QuestionsCorrect Pokemon Correctly</h1>
-
+    <h2 id="text">You've answered @Model.QuestionsCorrect out of @(Model.ListOfAnswers.Count() - 1) correctly</h2>
+    <br />
     <img id="pokeID" src="@Model.CorrectPokemon.PokemonImageUrl"
-         width="50%" height="50%" /> 
-        @*@Model.CorrectPokemon.PokemonName*@
-    <img/>
-
+         width="35%" height="35%" />
+    <h4 id="pokeName" class="d-none">The correct answer was @Model.CorrectPokemon.PokemonName.</h4>
+    <img />
+    <br />
 
     <form asp-controller="Quiz" asp-action="QuizView" id="pokemon-form">
+
         @foreach (var pokeName in Model.QuizAnswers)
         {
-            <input type="radio" name="pokemonName" data-is-complete="@pokeName.IsCorrect" value="@pokeName.PokemonName" /> @pokeName.PokemonName
+            <input  id="radioAnswers" class="d-inline" type="radio" name="pokemonName" data-is-complete="@pokeName.IsCorrect" value="@pokeName.PokemonName" checked required/>@pokeName.PokemonName   
+        
         }
         <br />
         <br />
         <div>
             <input type="submit" value="Submit" id="UserSubmit" class="btn-lg" onclick="userAnswer()" />
         </div>
-        <br />
-        <br />
+
     </form>
-
-
 </div>
 
 <style>
     .text {
         font-weight: bold;
     }
-
     img {
         filter: brightness(0%);
     }
@@ -45,7 +43,7 @@
 
 <script>
 
-    var delayInMilliseconds = 4000; //4 second
+    var delayInMilliseconds = 10000; //10 seconds
 
     function userAnswer() {
 
@@ -58,14 +56,10 @@
 
             if (isComplete && inputChild.checked) {
                 document.getElementById("pokeID").style.filter = "brightness(100%)";
+                document.getElementById("pokeName").className = "d-block";
+                document.getElementById("radioAnswers").className = "d-none";
             }
-
-
-            // Do stuff
         }
-
         setTimeout(() => console.log("tee hee"), delayInMilliseconds);
     }
-
-
 </script>

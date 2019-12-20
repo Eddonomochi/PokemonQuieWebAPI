@@ -120,7 +120,7 @@ namespace PokeQuizWebAPI.PokemonDAL
             var sql = @"
                 SELECT Top (@TopNums) Username
                 FROM UserScoreData 
-                ORDER BY OverallPercent DESC";
+                ORDER BY OverallPercent DESC, TotalAccumlatiedPoints DESC, AttemptsPerQuiz DESC";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {

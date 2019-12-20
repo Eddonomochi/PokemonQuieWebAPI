@@ -3,52 +3,65 @@
     ViewData["Title"] = "QuizResults";
 }
 
-<h1>Displaying Quiz Results</h1>
-
-<h3>Questions attempted: @Model.QuestionsAttempted</h3>
+<h1>Quiz Results</h1>
+<h3>Score: @Model.ScoreThisAttempt.ToString("0.##")%</h3>
+<h3>Questions Attempted: @Model.QuestionsAttempted</h3>
 <h3>Amount Correct: @Model.AmountCorrect</h3>
-<h3>Score this attempt: @Model.ScoreThisAttempt %</h3>
 
-<table>
-    <thead>
-        <tr>
+<br />
+<br />
 
-            <th>Correct Answer</th>
-
-        </tr>
-    </thead>
-    <tbody>
-
-        @foreach (var answer in Model.CorrectAnswers)
-        {
+<div style="float: left; margin-right: 10px">
+    <table>
+        <thead>
             <tr>
-
-                <td>@answer</td>
+                <th>Your Answers</th>
             </tr>
-        }
-    </tbody>
-</table>
-
-<table>
-    <thead>
-        <tr>
-
-            <th>User Answer</th>
-
-        </tr>
-    </thead>
-    <tbody>
-
-        @foreach (var answer in Model.SelectedAnswers)
-
-        {
+        </thead>
+        <tbody>
+            @foreach (var answer in Model.SelectedAnswers)
+            {
+                <tr>
+                    <td>@answer</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div style="float: left">
+    <table>
+        <thead>
             <tr>
-
-                <td>@answer</td>
+                <th>Correct Answers</th>
             </tr>
+        </thead>
+        <tbody>
+            @foreach (var answer in Model.CorrectAnswers)
+            {
+                <tr>
+                    <td>@answer</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br />
+
+<style>
+    table {
+        counter-reset: rowNumber-1;
+    }
+
+        table tr {
+            counter-increment: rowNumber;
         }
-    </tbody>
-</table>
 
+            table tr td:first-child::before {
+                content: counter(rowNumber);
+                min-width: 1em;
+                margin-right: 0.5em;
+            }
 
+ 
+</style>
 

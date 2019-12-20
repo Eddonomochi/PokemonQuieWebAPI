@@ -1,16 +1,29 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body {
-            padding-bottom: 37.5%; /* = ( 600 / 1600 ) x 100 */
-            background-image: url("https://external-preview.redd.it/e5zoQw-hgw-LCjdhC_4G8IAcHxex5pzda_BD_FPTcBY.png?auto=webp&s=c0b96b5ec20010a15864b8a0c9b202c119e52fe8");
-            background-size: cover;
-            }
-    </style>
-</head>
-<body>
+﻿@model PokeQuizWebAPI.Models.PlayerModels.PlayerRankModel
+@{
+    ViewData["Title"] = "Rank";
+}
 
-    
-</body>
-</html>
+<h1>@Model.Username</h1>
+<h3>Rank: @Model.PlayerRank</h3>
+<h3>Upper Percentile: @Model.PlayerPerrcentile.ToString("0.##")% </h3>
+<h3>Overall Score: @Model.AverageScore.ToString("0.##")%</h3>
+
+<br />
+<br />
+
+<table class="table" style="width: 35%">
+    <thead align="center">
+    <th colspan="2">
+        Top Ten Players
+    </th>
+    </thead>
+    <tbody>
+        @for (int i = 1; i < Model.TopTenPlayers.Count() + 1; i++)
+        {
+            <tr>
+                <td>@i. </td>
+                <td>@Model.TopTenPlayers[i - 1]</td>
+            </tr>
+        }
+    </tbody>
+</table>
