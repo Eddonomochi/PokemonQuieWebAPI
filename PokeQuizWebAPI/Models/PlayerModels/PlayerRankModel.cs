@@ -4,7 +4,7 @@ namespace PokeQuizWebAPI.Models.PlayerModels
 {
     public class PlayerRankModel
     {
-        public IEnumerable<string> TopTenPlayers { get; set; }
+        public List<string> TopTenPlayers { get; set; }
         public double AverageScore { get; set; }
         public double PlayerPerrcentile { get; set; }
         public int PlayerRank { get; set; }

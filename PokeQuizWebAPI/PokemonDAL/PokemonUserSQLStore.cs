@@ -79,7 +79,7 @@ namespace PokeQuizWebAPI.PokemonDAL
 
         public async Task<IEnumerable<double>> SelectAllScores()
         {
-            var sql = @"SELECT AverageScore FROM UserScoreData";
+            var sql = @"SELECT OverallPercent FROM UserScoreData";
 
             using (var connection = new SqlConnection(_config.ConnectionString)) //Idisposable
             {
@@ -90,12 +90,11 @@ namespace PokeQuizWebAPI.PokemonDAL
 
         public async Task<double> SelectPlayerAverageScore(int id)
         {
-            var sql = "SELECT AverageScore FROM UserScoreData Where FK_UsernameID = @UserID";
+            var sql = "SELECT OverallPercent FROM UserScoreData Where FK_UsernameID = @UserID";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
                 var result = connection.QueryFirstOrDefault<double>(sql, new { UserID = id });
-
                 return result;
             }
         }

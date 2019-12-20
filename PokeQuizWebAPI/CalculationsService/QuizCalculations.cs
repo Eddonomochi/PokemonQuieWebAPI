@@ -44,11 +44,13 @@ namespace PokeQuizWebAPI.CalculationsService
             foreach (var allPlayersScoress in listOfUsersInList)
             {
 
+
                 if (allPlayersScoress < currentUserScore)
 
                 {
                     numOfBottomPrecentile += 1;
                 }
+
 
             }
 
