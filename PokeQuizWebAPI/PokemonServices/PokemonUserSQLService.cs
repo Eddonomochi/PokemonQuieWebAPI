@@ -27,7 +27,7 @@ namespace PokeQuizWebAPI.PokemonServices
         {
             var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
             var dalModel = new PokemonDALModel();
-            var pokePlayer = _pokemonUserSQLStore.GetUserScoreData(user.Id);
+            var pokePlayer = await _pokemonUserSQLStore.GetUserScoreData(user.Id);
 
             if (user.Id == pokePlayer?.FK_UsernameID)
             {
@@ -38,7 +38,7 @@ namespace PokeQuizWebAPI.PokemonServices
                 pokePlayer.RecentAmountOfQuestions = model.QuestionsAttempted;
                 pokePlayer.WhichQuizTaken = model.QuestionsAttempted.ToString();
                 pokePlayer.AttemptsPerQuiz += 1;
-                _pokemonUserSQLStore.UpdateUserStatusAtQuizEnd(pokePlayer);
+                await _pokemonUserSQLStore.UpdateUserStatusAtQuizEnd(pokePlayer);
             }
             else
             {
@@ -51,20 +51,20 @@ namespace PokeQuizWebAPI.PokemonServices
                 dalModel.RecentAmountOfQuestions = model.QuestionsAttempted;
                 dalModel.WhichQuizTaken = model.QuestionsAttempted.ToString();
                 dalModel.AttemptsPerQuiz += 1;
-                _pokemonUserSQLStore.InsertUserStatusAtQuizEnd(dalModel);
+                await _pokemonUserSQLStore.InsertUserStatusAtQuizEnd(dalModel);
             }
         }
 
-        public async Task<float> ReturnPlayersAveragePercent()
+        public async Task<double> ReturnPlayersAveragePercent()
         {
             var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
-            var userAverageScore = _pokemonUserSQLStore.SelectPlayerAverageScore(user.Id);
+            var userAverageScore = await  _pokemonUserSQLStore.SelectPlayerAverageScore(user.Id);
             return userAverageScore;
         }
 
-        public IEnumerable<float> SelectAllScores()
+        public async Task<IEnumerable<double>> SelectAllScores()
         {
-            var averageScores = _pokemonUserSQLStore.SelectAllScores();
+            var averageScores = await _pokemonUserSQLStore.SelectAllScores();
             return averageScores;
         }
     }

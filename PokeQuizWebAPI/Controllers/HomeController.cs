@@ -23,7 +23,7 @@ namespace PokeQuizWebAPI.Controllers
             
             var model = new QuizDifficultyViewModel();
             model.SelectedNumberOfQuestions = 2;
-            string name = " ";
+            string name = null;
             var models = await _quizFlow.SetupQuiz(model, name);
             return View();
         }

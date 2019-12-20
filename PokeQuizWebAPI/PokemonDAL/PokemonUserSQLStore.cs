@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-
+using System.Threading.Tasks;
 
 namespace PokeQuizWebAPI.PokemonDAL
 {
@@ -14,7 +14,7 @@ namespace PokeQuizWebAPI.PokemonDAL
             _config = config;
         }
 
-        public bool UpdateUserStatusAtQuizEnd(PokemonDALModel dalModel)
+        public async Task<bool> UpdateUserStatusAtQuizEnd(PokemonDALModel dalModel)
         {
 
             var sql = $@"
@@ -39,7 +39,7 @@ namespace PokeQuizWebAPI.PokemonDAL
             }
         }
 
-        public bool InsertUserStatusAtQuizEnd(PokemonDALModel dalModel)
+        public async Task<bool> InsertUserStatusAtQuizEnd(PokemonDALModel dalModel)
         {
             var sql = $@"Insert INTO  
                         UserScoreData( Username, 
@@ -77,18 +77,18 @@ namespace PokeQuizWebAPI.PokemonDAL
             }
         }
 
-        public IEnumerable<float> SelectAllScores()
+        public async Task<IEnumerable<double>> SelectAllScores()
         {
             var sql = @"SELECT OverallPercent FROM UserScoreData";
 
             using (var connection = new SqlConnection(_config.ConnectionString)) //Idisposable
             {
-                var result = connection.Query<float>(sql);
+                var result = connection.Query<double>(sql);
                 return result;
             }
         }
 
-        public float SelectPlayerAverageScore(int id)
+        public async Task<double> SelectPlayerAverageScore(int id)
         {
             var sql = "SELECT OverallPercent FROM UserScoreData Where FK_UsernameID = @UserID";
 
@@ -100,7 +100,7 @@ namespace PokeQuizWebAPI.PokemonDAL
         }
 
 
-        public PokemonDALModel GetUserScoreData(int userID)
+        public async Task<PokemonDALModel> GetUserScoreData(int userID)
         {
 
             var sql = @"
@@ -115,7 +115,7 @@ namespace PokeQuizWebAPI.PokemonDAL
             }
         }
 
-        public IEnumerable<string> SelectOrderedPlayers(int topNumb)
+        public async Task<IEnumerable<string>> SelectOrderedPlayers(int topNumb)
         {
             var sql = @"
                 SELECT Top (@TopNums) Username

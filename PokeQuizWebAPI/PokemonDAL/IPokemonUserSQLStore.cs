@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PokeQuizWebAPI.PokemonDAL
 {
     public interface IPokemonUserSQLStore
     {
-        bool UpdateUserStatusAtQuizEnd(PokemonDALModel dalModel);
-        bool InsertUserStatusAtQuizEnd(PokemonDALModel dalModel);
+        Task<bool> UpdateUserStatusAtQuizEnd(PokemonDALModel dalModel);
+        Task<bool> InsertUserStatusAtQuizEnd(PokemonDALModel dalModel);
 
-        PokemonDALModel GetUserScoreData(int userID);
-        IEnumerable<float> SelectAllScores();
-        float SelectPlayerAverageScore(int id);
-        IEnumerable<string> SelectOrderedPlayers(int topNumb);
+        Task<PokemonDALModel> GetUserScoreData(int userID);
+        Task<IEnumerable<double>> SelectAllScores();
+        Task<double> SelectPlayerAverageScore(int id);
+        Task<IEnumerable<string>> SelectOrderedPlayers(int topNumb);
     }
 }

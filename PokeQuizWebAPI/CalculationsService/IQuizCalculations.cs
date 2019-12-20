@@ -1,11 +1,12 @@
 ﻿using Identity.Dapper.Entities;
+using System.Threading.Tasks;
 
 namespace PokeQuizWebAPI.CalculationsService
 {
     public interface IQuizCalculations
     {
         double CalculateCurrentAttemptScore(int questionsCorrect, int questionsAttempted);
-        double PrecentileFinder (int userID);
-        int RankFinder(int userID);
+        Task<double> PrecentileFinder (int userID);
+        Task<int> RankFinder(int userID);
     }
 }
