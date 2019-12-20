@@ -1,18 +1,19 @@
 ﻿@model PokeQuizWebAPI.Models.PlayerModels.PlayerRankModel
-
 @{
     ViewData["Title"] = "Rank";
 }
+
 <h1>@Model.Username</h1>
 <h3>Rank: @Model.PlayerRank</h3>
-<h3>Upper Percentile: @Model.PlayerPerrcentile.ToString()% </h3>
-<h3>Overall Score: @Model.AverageScore%</h3>
+<h3>Upper Percentile: @Model.PlayerPerrcentile.ToString("0.##")% </h3>
+<h3>Overall Score: @Model.AverageScore.ToString("0.##")%</h3>
 
 <br />
 <br />
-<table class="table" style="width: 40%">
-    <thead >
-        <th colspan="2" align="center" >
+
+<table class="table" style="width: 35%">
+    <thead align="center">
+        <th colspan="2">
                 Top Ten Players
         </th>
     </thead>

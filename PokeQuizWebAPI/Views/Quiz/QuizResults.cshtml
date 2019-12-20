@@ -4,13 +4,31 @@
 }
 
 <h1>Quiz Results</h1>
-<h3>Score: @Model.ScoreThisAttempt%</h3>
+<h3>Score: @Model.ScoreThisAttempt.ToString("0.##")%</h3>
 <h3>Questions Attempted: @Model.QuestionsAttempted</h3>
 <h3>Amount Correct: @Model.AmountCorrect</h3>
 
 <br />
 <br />
-<div style="float: right">
+
+<div style="float: left; margin-right: 10px">
+    <table>
+        <thead>
+            <tr>
+                <th>Your Answers</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var answer in Model.SelectedAnswers)
+            {
+                <tr>
+                    <td>@answer</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div style="float: left">
     <table>
         <thead>
             <tr>
@@ -27,37 +45,23 @@
         </tbody>
     </table>
 </div>
-<div style="float: left">
-    <table>
-        <thead>
-            <tr>
-                <th>User Answer</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var answer in Model.SelectedAnswers)
-            {
-                <tr>
-                    <td>@answer</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+<br />
 
 <style>
     table {
         counter-reset: rowNumber-1;
     }
 
-    table tr {
-        counter-increment: rowNumber;
-    }
+        table tr {
+            counter-increment: rowNumber;
+        }
 
-    table tr td:first-child::before {
-        content: counter(rowNumber);
-        min-width: 1em;
-        margin-right: 0.5em;
-    }
+            table tr td:first-child::before {
+                content: counter(rowNumber);
+                min-width: 1em;
+                margin-right: 0.5em;
+            }
+
+ 
 </style>
 

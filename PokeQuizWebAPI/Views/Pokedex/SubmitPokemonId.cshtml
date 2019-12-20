@@ -3,109 +3,129 @@
     ViewData["Title"] = "SubmitPokemonId";
 }
 
-<h1>Selecta pokemon to find more info about it</h1>
-
-<h3>Generation 1 Pokemon</h3>
-<div class="dropdown">
-    <form asp-controller="Pokedex" asp-action="GetPokemonDetails">
-        <select asp-for="@Model.PokemonSelected">
-            @foreach (var name in @Model.Gen1)
-            {
-                @*<p>@name.PokemonName</p>*@
-                <option name="name" value="@name.PokemonName">@name.PokemonName</option>
-            }
-        </select>
-        <input type="submit" value="Submit" class="btn btn-primary" />
-    </form>
-</div>
-
-<h3>Generation 2 Pokemon</h3>
-<div class="dropdown">
-    <form asp-controller="Pokedex" asp-action="GetPokemonDetails">
-        <select asp-for="@Model.PokemonSelected">
-            @foreach (var name in @Model.Gen2)
-            {
-                @*<p>@name.PokemonName</p>*@
-                <option name="name" value="@name.PokemonName">@name.PokemonName</option>
-            }
-        </select>
-        <input type="submit" value="Submit" class="btn btn-primary" />
-    </form>
-</div>
-
-<h3>Generation 3 Pokemon</h3>
-<div class="dropdown">
-    <form asp-controller="Pokedex" asp-action="GetPokemonDetails">
-        <select asp-for="@Model.PokemonSelected">
-            @foreach (var name in @Model.Gen3)
-            {
-                @*<p>@name.PokemonName</p>*@
-                <option name="name" value="@name.PokemonName">@name.PokemonName</option>
-            }
-        </select>
-        <input type="submit" value="Submit" class="btn btn-primary" />
-    </form>
-</div>
-
-<h3>Generation 4 Pokemon</h3>
-<div class="dropdown">
-    <form asp-controller="Pokedex" asp-action="GetPokemonDetails">
-        <select asp-for="@Model.PokemonSelected">
-            @foreach (var name in @Model.Gen4)
-            {
-                @*<p>@name.PokemonName</p>*@
-                <option name="name" value="@name.PokemonName">@name.PokemonName</option>
-            }
-        </select>
-        <input type="submit" value="Submit" class="btn btn-primary" />
-    </form>
-</div>
-
-<h3>Generation 5 Pokemon</h3>
-<div class="dropdown">
-    <form asp-controller="Pokedex" asp-action="GetPokemonDetails">
-        <select asp-for="@Model.PokemonSelected">
-            @foreach (var name in @Model.Gen5)
-            {
-                @*<p>@name.PokemonName</p>*@
-                <option name="name" value="@name.PokemonName">@name.PokemonName</option>
-            }
-        </select>
-        <input type="submit" value="Submit" class="btn btn-primary" />
-    </form>
-</div>
-
-<h3>Generation 6 Pokemon</h3>
-<div class="dropdown">
-    <form asp-controller="Pokedex" asp-action="GetPokemonDetails">
-        <select asp-for="@Model.PokemonSelected">
-            @foreach (var name in @Model.Gen6)
-            {
-                @*<p>@name.PokemonName</p>*@
-                <option name="name" value="@name.PokemonName">@name.PokemonName</option>
-            }
-        </select>
-        <input type="submit" value="Submit" class="btn btn-primary" />
-    </form>
-</div>
-
-<h3>Generation 7 Pokemon</h3>
-<div class="dropdown">
-    <form asp-controller="Pokedex" asp-action="GetPokemonDetails">
-        <select asp-for="@Model.PokemonSelected">
-            @foreach (var name in @Model.Gen7)
-            {
-                @*<p>@name.PokemonName</p>*@
-                <option name="name" value="@name.PokemonName">@name.PokemonName</option>
-            }
-        </select>
-        <input type="submit" value="Submit" class="btn btn-primary" />
-    </form>
-</div>
+<h1>Find Pokemon by Generation Below</h1>
 
 
+<ul>
+    <li>
+        <h2>Generation 1 Pokemon</h2>
+        <div class="dropdown">
+            <form asp-controller="Pokedex" asp-action="GetPokemonDetails">
+                <select asp-for="@Model.PokemonSelected">
+                    @foreach (var name in @Model.Gen1)
+                    {
+                        @*<p>@name.PokemonName</p>*@
+                        <option name="name" value="@name.PokemonName">@name.PokemonName</option>
+                    }
+                </select>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </form>
+        </div>
+    </li>
 
 
+    <li>
+        <h3>Generation 2 Pokemon</h3>
+        <div class="dropdown">
+            <form asp-controller="Pokedex" asp-action="GetPokemonDetails">
+                <select asp-for="@Model.PokemonSelected">
+                    @foreach (var name in @Model.Gen2)
+                    {
+                        @*<p>@name.PokemonName</p>*@
+                        <option name="name" value="@name.PokemonName">@name.PokemonName</option>
+                    }
+                </select>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </form>
+        </div>
 
+    </li>
+
+    <li>
+        <h3>Generation 3 Pokemon</h3>
+        <div class="dropdown">
+            <form asp-controller="Pokedex" asp-action="GetPokemonDetails">
+                <select asp-for="@Model.PokemonSelected">
+                    @foreach (var name in @Model.Gen3)
+                    {
+                        @*<p>@name.PokemonName</p>*@
+                        <option name="name" value="@name.PokemonName">@name.PokemonName</option>
+                    }
+                </select>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </form>
+        </div>
+    </li>
+
+    <li>
+        <h3>Generation 4 Pokemon</h3>
+        <div class="dropdown">
+            <form asp-controller="Pokedex" asp-action="GetPokemonDetails">
+                <select asp-for="@Model.PokemonSelected">
+                    @foreach (var name in @Model.Gen4)
+                    {
+                        @*<p>@name.PokemonName</p>*@
+                        <option name="name" value="@name.PokemonName">@name.PokemonName</option>
+                    }
+                </select>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </form>
+        </div>
+    </li>
+
+    <li>
+        <h3>Generation 5 Pokemon</h3>
+        <div class="dropdown">
+            <form asp-controller="Pokedex" asp-action="GetPokemonDetails">
+                <select asp-for="@Model.PokemonSelected">
+                    @foreach (var name in @Model.Gen5)
+                    {
+                        @*<p>@name.PokemonName</p>*@
+                        <option name="name" value="@name.PokemonName">@name.PokemonName</option>
+                    }
+                </select>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </form>
+        </div>
+    </li>
+
+    <li>
+        <h3>Generation 6 Pokemon</h3>
+        <div class="dropdown">
+            <form asp-controller="Pokedex" asp-action="GetPokemonDetails">
+                <select asp-for="@Model.PokemonSelected">
+                    @foreach (var name in @Model.Gen6)
+                    {
+                        @*<p>@name.PokemonName</p>*@
+                        <option name="name" value="@name.PokemonName">@name.PokemonName</option>
+                    }
+                </select>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </form>
+        </div>
+    </li>
+
+    <li>
+        <h3>Generation 7 Pokemon</h3>
+        <div class="dropdown">
+            <form asp-controller="Pokedex" asp-action="GetPokemonDetails">
+                <select asp-for="@Model.PokemonSelected">
+                    @foreach (var name in @Model.Gen7)
+                    {
+                        @*<p>@name.PokemonName</p>*@
+                        <option name="name" value="@name.PokemonName">@name.PokemonName</option>
+                    }
+                </select>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </form>
+        </div>
+    </li>
+</ul>
+
+<style>
+    ul {
+        list-style-type: none;
+    }
+</style>
 
 
