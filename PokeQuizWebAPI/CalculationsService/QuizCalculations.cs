@@ -34,13 +34,13 @@ namespace PokeQuizWebAPI.CalculationsService
             var numOfBottomPrecentile = 0;
             //var userCount = listOfUsers.Count();
             var listOfUsersInList = new List<double>();
-            var userCount = listOfUsersInList.Count();
+            
 
             foreach (var allPlayerScores in listOfUsers)
             {
                 listOfUsersInList.Add(allPlayerScores);
             }
-
+            var userCount = listOfUsersInList.Count();
             foreach (var allPlayersScoress in listOfUsersInList)
             {
 
