@@ -9,8 +9,8 @@
 <div>
     <label>Pokemon Name: @Model.PokemonName </label><br />
     <label>Pokemon ID Number: @Model.PokemonId</label><br />
-    <label>Pokemon Weight: @Model.PokemonWeight</label><br />
-    <label>Pokemon Heights: @Model.PokemonHeight</label><br />
+    <label>Pokemon Weight: @Model.PokemonWeight kgs</label><br />
+    <label>Pokemon Height: @Model.PokemonHeight meters</label><br />
 </div>
 
 <div>
@@ -18,7 +18,7 @@
     <label>Some pokemon are just one type other pokemon contain multiple types</label><br />
     <label>To learn more about the listed pokemon type click on the type name</label><br />
     <label>
-        @Model.PokemonName constains the following types:
+        @Model.PokemonName contains the following types:
     @foreach (var type in Model.PokemonTypes)
     {
         <a asp-controller="Pokedex" asp-action="GetPokemonTypeInfo" asp-route-name="@type">@type</a>
